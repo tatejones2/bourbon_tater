@@ -183,7 +183,9 @@ export default function BottleForm({
                 <button
                   type="button"
                   key={option.value}
-                  className={formData.status === option.value ? styles.segmentActive : ''}
+                  className={`${styles.segmentButton} ${
+                    formData.status === option.value ? styles.segmentActive : ''
+                  }`}
                   onClick={() => updateField('status', option.value)}
                 >
                   {option.label}

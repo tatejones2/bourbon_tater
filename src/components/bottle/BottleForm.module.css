@@ -60,12 +60,18 @@
   overflow: hidden;
 }
 
-.segmented button {
+
+.segmentButton {
   background: transparent;
   border: none;
   padding: 8px 14px;
   font-weight: 600;
   color: var(--color-text-secondary);
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.segmentButton:hover {
+  background: rgba(200, 115, 42, 0.08);
 }
 
 .segmentActive {
