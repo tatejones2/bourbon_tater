@@ -6,12 +6,13 @@ export default function useOpenAI() {
   const [error, setError] = useState(null)
   const [rawResponse, setRawResponse] = useState(null)
   const apiKey = import.meta.env.VITE_OPENAI_API_KEY
+  const apiUrl = import.meta.env.VITE_OPENAI_API_URL
   const client = apiKey
     ? new OpenAI({ apiKey, dangerouslyAllowBrowser: true })
     : null
 
   const lookUpBottle = async (bottleName) => {
-    if (!client) {
+    if (!apiUrl && !client) {
       setError('OpenAI API key is missing.')
       return null
     }
@@ -20,6 +21,22 @@ export default function useOpenAI() {
     setRawResponse(null)
 
     try {
+      if (apiUrl) {
+        const response = await fetch(apiUrl, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ bottleName }),
+        })
+        if (!response.ok) {
+          const message = await response.text()
+          throw new Error(message || 'Lookup failed')
+        }
+        const payload = await response.json()
+        const content = payload.content
+        setRawResponse(content || '')
+        return content ? { data: JSON.parse(content), raw: content } : null
+      }
+
       const response = await client.chat.completions.create({
         model: 'gpt-4o',
         messages: [

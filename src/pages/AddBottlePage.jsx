@@ -47,7 +47,9 @@ export default function AddBottlePage() {
   const [saving, setSaving] = useState(false)
   const { lookUpBottle, loading, error, rawResponse } = useOpenAI()
   const storageEnabled = !!storage
-  const aiEnabled = import.meta.env.DEV && !!import.meta.env.VITE_OPENAI_API_KEY
+  const aiEnabled =
+    !!import.meta.env.VITE_OPENAI_API_URL ||
+    (import.meta.env.DEV && !!import.meta.env.VITE_OPENAI_API_KEY)
 
   const handleLookup = async () => {
     if (!aiName.trim()) return
