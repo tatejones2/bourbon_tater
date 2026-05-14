@@ -1,6 +1,6 @@
 import { createContext, useContext, useReducer, useEffect } from 'react'
 import { collection, onSnapshot, query, orderBy } from 'firebase/firestore'
-import { db } from '../firebase/firebaseConfig'
+import { db, firebaseConfigError } from '../firebase/firebaseConfig'
 
 const CollectionContext = createContext(null)
 
@@ -27,6 +27,13 @@ export function CollectionProvider({ children }) {
   const [state, dispatch] = useReducer(reducer, initialState)
 
   useEffect(() => {
+    if (!db) {
+      dispatch({
+        type: 'SET_ERROR',
+        payload: firebaseConfigError || 'Firebase is not configured.',
+      })
+      return () => {}
+    }
     const q = query(collection(db, 'bottles'), orderBy('dateAdded', 'desc'))
     const unsubscribe = onSnapshot(
       q,

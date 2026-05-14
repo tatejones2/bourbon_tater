@@ -36,7 +36,7 @@ export default function BottleDetailPage() {
 
   const handleDelete = async () => {
     await deleteDoc(doc(db, 'bottles', id))
-    if (bottle.photoURL) {
+    if (bottle.photoURL && storage) {
       const photoRef = ref(storage, `bottles/${id}/photo.jpg`)
       await deleteObject(photoRef)
     }

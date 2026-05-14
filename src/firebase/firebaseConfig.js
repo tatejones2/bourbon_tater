@@ -11,6 +11,11 @@ const firebaseConfig = {
   appId: import.meta.env.VITE_FIREBASE_APP_ID,
 }
 
-const app = initializeApp(firebaseConfig)
-export const db = getFirestore(app)
-export const storage = getStorage(app)
+const missingFirebaseConfig = Object.values(firebaseConfig).some((value) => !value)
+
+const app = !missingFirebaseConfig ? initializeApp(firebaseConfig) : null
+export const db = app ? getFirestore(app) : null
+export const storage = app ? getStorage(app) : null
+export const firebaseConfigError = missingFirebaseConfig
+  ? 'Missing Firebase environment variables.'
+  : null

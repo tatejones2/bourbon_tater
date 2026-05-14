@@ -78,3 +78,7 @@
   justify-content: flex-end;
   gap: 12px;
 }
+
+.notice {
+  color: var(--color-text-muted);
+}

@@ -163,7 +163,7 @@ export default function ShelfPage() {
     if (!deleteTarget) return
     const refDoc = doc(collection(db, 'bottles'), deleteTarget.id)
     await deleteDoc(refDoc)
-    if (deleteTarget.photoURL) {
+    if (deleteTarget.photoURL && storage) {
       const photoRef = ref(storage, `bottles/${deleteTarget.id}/photo.jpg`)
       await deleteObject(photoRef)
     }

@@ -46,6 +46,7 @@ export default function AddBottlePage() {
   const [aiWarning, setAiWarning] = useState(false)
   const [saving, setSaving] = useState(false)
   const { lookUpBottle, loading, error, rawResponse } = useOpenAI()
+  const storageEnabled = !!storage
 
   const handleLookup = async () => {
     if (!aiName.trim()) return
@@ -79,7 +80,7 @@ export default function AddBottlePage() {
         dateModified: now,
       })
 
-      if (photoFile) {
+      if (photoFile && storageEnabled) {
         const photoRef = ref(storage, `bottles/${docRef.id}/photo.jpg`)
         await uploadBytes(photoRef, photoFile)
         const url = await getDownloadURL(photoRef)
@@ -113,6 +114,7 @@ export default function AddBottlePage() {
         photoFile={photoFile}
         onPhotoChange={setPhotoFile}
         isSaving={saving}
+        enablePhotoUpload={storageEnabled}
       />
     </PageWrapper>
   )

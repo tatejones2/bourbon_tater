@@ -14,6 +14,7 @@ export default function EditBottlePage() {
   const [formData, setFormData] = useState(null)
   const [photoFile, setPhotoFile] = useState(null)
   const [saving, setSaving] = useState(false)
+  const storageEnabled = !!storage
 
   useEffect(() => {
     if (bottle) {
@@ -40,7 +41,7 @@ export default function EditBottlePage() {
       }
       await updateDoc(doc(db, 'bottles', id), update)
 
-      if (photoFile) {
+      if (photoFile && storageEnabled) {
         const photoRef = ref(storage, `bottles/${id}/photo.jpg`)
         await uploadBytes(photoRef, photoFile)
         const url = await getDownloadURL(photoRef)
@@ -65,6 +66,7 @@ export default function EditBottlePage() {
         photoFile={photoFile}
         onPhotoChange={setPhotoFile}
         isSaving={saving}
+        enablePhotoUpload={storageEnabled}
       />
     </PageWrapper>
   )

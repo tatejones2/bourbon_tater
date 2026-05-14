@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { doc, onSnapshot } from 'firebase/firestore'
-import { db } from '../firebase/firebaseConfig'
+import { db, firebaseConfigError } from '../firebase/firebaseConfig'
 
 export default function useBottle(id) {
   const [bottle, setBottle] = useState(null)
@@ -8,6 +8,11 @@ export default function useBottle(id) {
   const [error, setError] = useState(null)
 
   useEffect(() => {
+    if (!db) {
+      setError(firebaseConfigError || 'Firebase is not configured.')
+      setLoading(false)
+      return
+    }
     if (!id) return
     const ref = doc(db, 'bottles', id)
     const unsubscribe = onSnapshot(

@@ -21,6 +21,7 @@ export default function BottleForm({
   onPhotoChange,
   isSaving = false,
   submitLabel = 'Save Bottle',
+  enablePhotoUpload = true,
 }) {
   const updateField = (field, value) => setFormData({ ...formData, [field]: value })
   const tastingDefaults = {
@@ -235,7 +236,15 @@ export default function BottleForm({
 
       <section className={styles.section}>
         <h3>Photo Upload</h3>
-        <PhotoUpload file={photoFile} existingUrl={formData.photoURL} onFileChange={onPhotoChange} />
+        {enablePhotoUpload ? (
+          <PhotoUpload
+            file={photoFile}
+            existingUrl={formData.photoURL}
+            onFileChange={onPhotoChange}
+          />
+        ) : (
+          <p className={styles.notice}>Photo upload is disabled until Firebase Storage is enabled.</p>
+        )}
       </section>
 
       <TastingNotesForm values={tastingNotes} onChange={updateTasting} />
