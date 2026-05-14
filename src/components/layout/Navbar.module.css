@@ -1,0 +1,46 @@
+.navbar {
+  background: var(--color-bg-dark);
+  color: var(--color-text-on-dark);
+  padding: 18px 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 2px solid var(--color-amber);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.brand {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.wordmark {
+  font-family: var(--font-heading);
+  font-size: 1.6rem;
+  color: var(--color-amber-light);
+}
+
+.tagline {
+  font-size: 0.9rem;
+  color: var(--color-text-on-dark);
+  opacity: 0.8;
+}
+
+.links {
+  display: flex;
+  gap: 16px;
+  font-weight: 600;
+}
+
+.links a {
+  color: var(--color-text-on-dark);
+  padding: 6px 10px;
+  border-radius: var(--radius-sm);
+}
+
+.active {
+  background: rgba(245, 239, 224, 0.15);
+}

@@ -1,0 +1,37 @@
+.panel {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-gold);
+  border-radius: var(--radius-md);
+  padding: 16px;
+  box-shadow: var(--shadow-card);
+}
+
+.group {
+  display: grid;
+  gap: 8px;
+  font-weight: 600;
+  color: var(--color-text-secondary);
+}
+
+.group select,
+.group input[type='number'] {
+  padding: 8px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--color-gold);
+  background: var(--color-surface);
+}
+
+.rangeRow {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.toggle {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}

@@ -1,0 +1,11 @@
+.empty {
+  text-align: center;
+  display: grid;
+  gap: 12px;
+  justify-items: center;
+  padding: 48px 16px;
+}
+
+.empty p {
+  color: var(--color-text-secondary);
+}

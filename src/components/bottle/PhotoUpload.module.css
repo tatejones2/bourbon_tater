@@ -1,0 +1,38 @@
+.wrapper {
+  display: grid;
+  gap: 12px;
+}
+
+.dropzone {
+  border: 2px dashed var(--color-amber);
+  border-radius: var(--radius-md);
+  padding: 16px;
+  background: var(--color-surface);
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  min-height: 180px;
+}
+
+.dropzone input {
+  display: none;
+}
+
+.placeholder {
+  display: grid;
+  place-items: center;
+  gap: 8px;
+  color: var(--color-text-secondary);
+}
+
+.placeholder span {
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+}
+
+.preview {
+  width: 100%;
+  max-height: 280px;
+  object-fit: cover;
+  border-radius: var(--radius-md);
+}

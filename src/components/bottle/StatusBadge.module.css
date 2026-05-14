@@ -1,0 +1,23 @@
+.badge {
+  padding: 4px 10px;
+  border-radius: var(--radius-pill);
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+}
+
+.sealed {
+  background: rgba(107, 117, 69, 0.2);
+  color: var(--color-olive);
+}
+
+.open {
+  background: rgba(200, 115, 42, 0.2);
+  color: var(--color-amber);
+}
+
+.empty {
+  background: rgba(156, 123, 85, 0.2);
+  color: var(--color-text-muted);
+}

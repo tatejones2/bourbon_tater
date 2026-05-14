@@ -1,0 +1,26 @@
+.wrapper {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--color-amber);
+  font-weight: 600;
+}
+
+.spinner {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 3px solid rgba(200, 115, 42, 0.3);
+  border-top-color: var(--color-amber);
+  animation: spin 0.9s linear infinite;
+}
+
+.label {
+  color: var(--color-text-secondary);
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
