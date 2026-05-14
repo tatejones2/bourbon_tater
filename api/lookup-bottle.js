@@ -1,10 +1,23 @@
 export default async function handler(req, res) {
+  res.setHeader('Access-Control-Allow-Origin', '*')
+  res.setHeader('Access-Control-Allow-Methods', 'POST, GET, OPTIONS')
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type')
+
+  if (req.method === 'OPTIONS') {
+    return res.status(204).end()
+  }
+
+  if (req.method === 'GET') {
+    return res.status(200).json({ ok: true })
+  }
+
   if (req.method !== 'POST') {
-    res.setHeader('Allow', 'POST')
+    res.setHeader('Allow', 'POST, GET, OPTIONS')
     return res.status(405).json({ error: 'Method not allowed' })
   }
 
-  const { bottleName } = req.body || {}
+  const body = typeof req.body === 'string' ? JSON.parse(req.body) : req.body
+  const { bottleName } = body || {}
   if (!bottleName) {
     return res.status(400).json({ error: 'Missing bottleName' })
   }
