@@ -47,6 +47,7 @@ export default function AddBottlePage() {
   const [saving, setSaving] = useState(false)
   const { lookUpBottle, loading, error, rawResponse } = useOpenAI()
   const storageEnabled = !!storage
+  const aiEnabled = import.meta.env.DEV && !!import.meta.env.VITE_OPENAI_API_KEY
 
   const handleLookup = async () => {
     if (!aiName.trim()) return
@@ -102,7 +103,7 @@ export default function AddBottlePage() {
         onSubmit={handleSubmit}
         onCancel={() => navigate('/')}
         submitLabel="Add to My Shelf"
-        showAILookup
+        showAILookup={aiEnabled}
         aiProps={{
           nameValue: aiName,
           onNameChange: setAiName,
