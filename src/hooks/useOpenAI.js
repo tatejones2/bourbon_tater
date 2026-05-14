@@ -1,17 +1,20 @@
 import { useState } from 'react'
 import OpenAI from 'openai'
 
-const client = new OpenAI({
-  apiKey: import.meta.env.VITE_OPENAI_API_KEY,
-  dangerouslyAllowBrowser: true,
-})
-
 export default function useOpenAI() {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(null)
   const [rawResponse, setRawResponse] = useState(null)
+  const apiKey = import.meta.env.VITE_OPENAI_API_KEY
+  const client = apiKey
+    ? new OpenAI({ apiKey, dangerouslyAllowBrowser: true })
+    : null
 
   const lookUpBottle = async (bottleName) => {
+    if (!client) {
+      setError('OpenAI API key is missing.')
+      return null
+    }
     setLoading(true)
     setError(null)
     setRawResponse(null)
