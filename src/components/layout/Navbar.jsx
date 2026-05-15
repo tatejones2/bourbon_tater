@@ -15,6 +15,12 @@ export default function Navbar() {
         <NavLink to="/add" className={({ isActive }) => (isActive ? styles.active : '')}>
           Add Bottle
         </NavLink>
+        <NavLink
+          to="/wishlist"
+          className={({ isActive }) => (isActive ? styles.active : '')}
+        >
+          Wishlist
+        </NavLink>
       </nav>
     </header>
   )

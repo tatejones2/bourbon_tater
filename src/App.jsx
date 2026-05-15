@@ -4,6 +4,7 @@ import ShelfPage from './pages/ShelfPage'
 import AddBottlePage from './pages/AddBottlePage'
 import BottleDetailPage from './pages/BottleDetailPage'
 import EditBottlePage from './pages/EditBottlePage'
+import WishlistPage from './pages/WishlistPage'
 import { CollectionProvider } from './context/CollectionContext'
 
 export default function App() {
@@ -14,6 +15,7 @@ export default function App() {
         <Routes>
           <Route path="/" element={<ShelfPage />} />
           <Route path="/add" element={<AddBottlePage />} />
+          <Route path="/wishlist" element={<WishlistPage />} />
           <Route path="/bottle/:id" element={<BottleDetailPage />} />
           <Route path="/bottle/:id/edit" element={<EditBottlePage />} />
         </Routes>
