@@ -19,6 +19,7 @@ export default function BottleForm({
   aiProps = {},
   photoFile,
   onPhotoChange,
+  onPhotoUrlChange,
   isSaving = false,
   submitLabel = 'Save Bottle',
   enablePhotoUpload = true,
@@ -243,6 +244,7 @@ export default function BottleForm({
             file={photoFile}
             existingUrl={formData.photoURL}
             onFileChange={onPhotoChange}
+            onUrlChange={onPhotoUrlChange}
           />
         ) : (
           <p className={styles.notice}>Photo upload is disabled until Firebase Storage is enabled.</p>

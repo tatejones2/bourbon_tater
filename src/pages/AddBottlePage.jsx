@@ -116,6 +116,7 @@ export default function AddBottlePage() {
         }}
         photoFile={photoFile}
         onPhotoChange={setPhotoFile}
+        onPhotoUrlChange={(url) => setFormData({ ...formData, photoURL: url })}
         isSaving={saving}
         enablePhotoUpload={storageEnabled}
       />

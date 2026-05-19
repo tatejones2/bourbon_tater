@@ -3,7 +3,7 @@ import { Camera } from 'lucide-react'
 import styles from './PhotoUpload.module.css'
 import Button from '../ui/Button'
 
-export default function PhotoUpload({ file, existingUrl, onFileChange }) {
+export default function PhotoUpload({ file, existingUrl, onFileChange, onUrlChange }) {
   const previewUrl = useMemo(() => {
     if (file) return URL.createObjectURL(file)
     return existingUrl || null
@@ -45,6 +45,17 @@ export default function PhotoUpload({ file, existingUrl, onFileChange }) {
           Remove
         </Button>
       )}
+      <div className={styles.urlRow}>
+        <label>
+          Image URL
+          <input
+            type="url"
+            placeholder="https://example.com/bottle.jpg"
+            value={existingUrl || ''}
+            onChange={(event) => onUrlChange?.(event.target.value)}
+          />
+        </label>
+      </div>
     </div>
   )
 }

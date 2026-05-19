@@ -65,6 +65,7 @@ export default function EditBottlePage() {
         submitLabel="Save Changes"
         photoFile={photoFile}
         onPhotoChange={setPhotoFile}
+        onPhotoUrlChange={(url) => setFormData({ ...formData, photoURL: url })}
         isSaving={saving}
         enablePhotoUpload={storageEnabled}
       />
